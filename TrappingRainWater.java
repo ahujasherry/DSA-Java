@@ -1,34 +1,42 @@
 //https://leetcode.com/problems/trapping-rain-water/?envType=study-plan-v2&envId=top-interview-150
 class Solution {
-    //S.C = O(2n)
-    //T.C = 3*O(n)
+    //S.C = O(1)
+    //T.C = O(n)
     public  int trap(int[] height)
     {
-        int trap = 0;
+       int trap = 0;
         int n  = height.length;
-        int leftMax[]= new int[n];
-        int rightMax[]= new int[n];
+        int leftMax=0;
+        int rightMax=0;
+        int left = 0;
+        int right = n-1;
 
-        leftMax[0]= height[0];
-        for (int i = 1; i < n; i++)
+        while(left<=right)
         {
-               leftMax[i] = Math.max(leftMax[i-1],height[i]);
-        }
+            if(height[left] <= height[right])
+            {
+                if(height[left]>= leftMax){
+                    leftMax = height[left];
+                }else {
+                    trap+= leftMax - height[left];
+                }
 
-        rightMax[n-1] = height[n-1];
-        for (int i = n-2; i >= 0; i--)
-        {
-            rightMax[i] = Math.max(rightMax[i+1],height[i]);
-        }
+                left++;
 
-        for (int i = 0; i <n ; i++) {
-            int min =Math.min(leftMax[i],rightMax[i]);
-            if(min > height[i]);
-                trap+= min - height[i];
-        }
+            }else {
 
+                if(height[right]>= rightMax){
+                    rightMax = height[right];
+                }else{
+                    trap+= rightMax - height[right];
+                }
+                right--;
+            }
+
+
+
+        }
 
         return  trap;
-
     }
 }
