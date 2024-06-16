@@ -2,9 +2,9 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
          int n = nums.length;
-        int prefix[]= new int[n];
-        int suffix[]= new int[n];
-        int result[]= new int[n];
+        int prefix[]= new int[n];   //stores prefix product except ith element
+        int suffix[]= new int[n];   //stores prefix product except ith element
+        int result[]= new int[n];   //stores product except itself
 
 
         prefix[0]=1;
