@@ -1,4 +1,6 @@
 //https://leetcode.com/problems/valid-parentheses/?envType=study-plan-v2&envId=top-interview-150
+//T.C  worst case = O(n)
+//S.C  - O(n)
 class Solution {
     public boolean isValid(String s) {
         char topBracket;
