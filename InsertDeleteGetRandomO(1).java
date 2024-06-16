@@ -10,6 +10,7 @@ class RandomizedSet {
         list = new ArrayList<>();
     }
 
+    //T.C = O(1)
     public boolean insert(int val)
     {
         if(map.containsKey(val)) return false;
@@ -20,19 +21,21 @@ class RandomizedSet {
 
     }
 
+    //T.C = O(1)
     public boolean remove(int val) {
         if(!map.containsKey(val)) return false;
 
-        int index = map.get(val);               //get index from map
-        map.put(list.get(list.size()-1), index);   //add last element of list to emptied place
+        int index = map.get(val);                  //get index from map
+        map.put(list.get(list.size()-1), index);   //replace last element of list to index place in both map and list
         list.set(index,list.get(list.size()-1));
 
-        map.remove(val);           // remove from map
+        map.remove(val);                   // remove from map
         list.remove(list.size()-1);        //remove from list
         return true;
 
     }
 
+    //T.C = O(1)
     public int getRandom() {
        return list.get(new Random().nextInt(list.size()));
     }
