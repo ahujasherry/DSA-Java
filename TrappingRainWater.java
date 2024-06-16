@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/trapping-rain-water/?envType=study-plan-v2&envId=top-interview-150
+// this is space optimized solution
 class Solution {
     //S.C = O(1)
     //T.C = O(n)
@@ -6,10 +7,10 @@ class Solution {
     {
        int trap = 0;
         int n  = height.length;
-        int leftMax=0;
-        int rightMax=0;
-        int left = 0;
-        int right = n-1;
+        int leftMax=0;          //track max to the left at any point
+        int rightMax=0;        //track max to the right at any point
+        int left = 0;          //left pointer
+        int right = n-1;       // right pointer
 
         while(left<=right)
         {
