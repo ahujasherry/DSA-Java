@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150
+//Leetcode link : https://leetcode.com/problems/is-subsequence/description/?envType=study-plan-v2&envId=top-interview-150
 //2 pointers approach
 // T.C = O(n) where n is len(t) or len(s) whichever is longer
 // S.C = O(1)
