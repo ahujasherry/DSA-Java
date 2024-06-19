@@ -1,2 +1,2 @@
 # DSA-Java
-repo for populat data structures and algorithms solutions
+repo for popular data structures and algorithms solutions
