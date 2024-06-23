@@ -1,4 +1,6 @@
 //https://leetcode.com/problems/merge-intervals/
+//T.C = O(NlogN) +  O(N)
+//S.C = O(N)
 class ResPair{
     int start ;
     int end ;
