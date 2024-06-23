@@ -1,5 +1,7 @@
 
 //https://leetcode.com/problems/next-permutation/
+// T.C = O(N)
+// S.C = O(N)
 class Solution {
     public void nextPermutation(int[] nums) 
     {
