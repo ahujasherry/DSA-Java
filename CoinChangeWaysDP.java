@@ -1,5 +1,8 @@
 import java.util.*;
+//We are given an array Arr with N distinct coins and a target. We have an infinite supply of each coin denomination. 
+//We need to find the number of ways we sum up the coin values to give us the target.
 
+Each coin can be used any number of times.
 class TUF {
     // Function to count the ways to make change
     static long countWaysToMakeChange(int[] arr, int n, int T) {
