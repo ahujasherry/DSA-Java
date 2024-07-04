@@ -1,4 +1,7 @@
 //https://leetcode.com/problems/edit-distance/
+
+//T.C = O(M*N)
+//S.C = O(M*N)
 class Solution {
     public int minDistance(String S1, String S2) {
          int m = S1.length();
