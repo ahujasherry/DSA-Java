@@ -1,6 +1,8 @@
 import java.util.*;
 
 
+//T.C = O(N^2)
+//S.C = O(N)
 public class Main {
 
 
