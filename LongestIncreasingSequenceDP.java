@@ -1,4 +1,7 @@
 //DP solution
+
+//T.C = O(N)
+//S.C = O(N)
 class Solution {
     public int lengthOfLIS(int[] nums) {
         if (nums.length == 0) return 0;
