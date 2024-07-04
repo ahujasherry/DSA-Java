@@ -1,4 +1,7 @@
 //https://leetcode.com/problems/longest-common-subsequence/
+
+//T.C = O(m*n)
+//S.C = O(m*n)
 class Solution {
     public int longestCommonSubsequence(String str1, String str2) {
         int m = str1.length();
