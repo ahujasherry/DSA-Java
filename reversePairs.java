@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/reverse-pairs/solutions/4948542/n-log-n-easy-to-understand/
+//T.C = O(nlogn)
 class Solution {
     public int reversePairs(int[] nums) 
     {
