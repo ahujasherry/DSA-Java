@@ -1,5 +1,5 @@
 //https://leetcode.com/problems/trapping-rain-water/?envType=study-plan-v2&envId=top-interview-150
-// this is space optimized solution
+//   this is space optimized solution
 class Solution {
     //S.C = O(1)
     //T.C = O(n)
