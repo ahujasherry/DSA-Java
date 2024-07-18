@@ -1,4 +1,4 @@
-// Java program to find celebrity using
+//  Java program to find celebrity using
 // stack data structure
 import java.util.Stack;
 
