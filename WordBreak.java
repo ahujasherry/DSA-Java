@@ -1,36 +1,29 @@
 class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreak(String s, List<String> wordDict) 
+    {
+        boolean dp[]= new boolean[s.length()+1];
+        dp[0]= true;
+        
+        Set<String> set = new HashSet<>();
+        set.addAll(wordDict);
 
-        Set<String> wordSet = new HashSet<>(wordDict);
-        Map<String, Boolean> memo = new HashMap<>();
-        return wordBreakUtil(s, wordSet, memo);
-
-    }
-
-    public boolean wordBreakUtil(String s, Set<String> wordSet, Map<String, Boolean> memo) {
-
-        if (memo.containsKey(s)) {
-            return memo.get(s); 
-        }
-
-        if(wordSet.contains(s)){
-            memo.put(s,true);
-            return true;
-        }
-
-        for (int i = 1; i < s.length(); i++) 
+        //calculate for every len
+        for (int i = 1; i <= s.length(); i++) 
         {
-            String prefix = s.substring(0, i);
-            if (wordSet.contains(prefix) &&
-                    wordBreakUtil(s.substring(i), wordSet,memo))
+            //check for each substring for length
+            for(int j=i-1;j>=0;j--)
             {
-                memo.put(s,true);
-                return true;
+                if(dp[j] && set.contains(s.substring(j,i)))
+                {
+                    dp[i] = true;
+                    break;
+                }
             }
+           
         }
 
-        memo.put(s, false);
-        return false;
-
+        return dp[s.length()];
     }
+
+    
 }
