@@ -1,30 +1,37 @@
 //https://leetcode.com/problems/search-a-2d-matrix/
-//T.C = O(M) or O(N) whichever is larger
+//T.C = O(Log(M*N)
 //S.C = O(1)
-class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) 
-    {
-        
-        int m = matrix.length;
-        int n = matrix[0].length;
+import java.util.*;
 
-        int  i = 0;
-        int j  = n-1;
+public class Solution {
+    public static boolean searchMatrix(ArrayList<ArrayList<Integer>> matrix, int target) {
+        int m = matrix.size();
+        int n = matrix.get(0).size();
 
-        //start from top right 
-        while(j>=0 && i<m)
+        //apply binary search:
+        int low = 0, high = m * n - 1;
+        while (low <= high) 
         {
-            if(matrix[i][j]==target){
-                return  true;
-            } else if (matrix[i][j] > target) {
-                j--;
-            }else{
-                i++;
-            }
-
+            int mid = (low + high) / 2;
+            int row = mid / n, col = mid % n;
+            
+            if (matrix.get(row).get(col) == target) return true;
+            else if (matrix.get(row).get(col) < target) low = mid + 1;
+            else high = mid - 1;
         }
-
         return false;
-        
+    }
+
+
+    public static void main(String[] args) {
+        ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+        matrix.add(new ArrayList<>(Arrays.asList(1, 2, 3, 4)));
+        matrix.add(new ArrayList<>(Arrays.asList(5, 6, 7, 8)));
+        matrix.add(new ArrayList<>(Arrays.asList(9, 10, 11, 12)));
+
+        boolean result = searchMatrix(matrix, 8);
+        System.out.println(result ? "true" : "false");
     }
 }
+
+
