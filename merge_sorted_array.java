@@ -6,7 +6,7 @@ public class Main {
     {
             int num1[] = {1,2,3,0,0,0};
             int num2[] = {4,5,6};
-            int m = 3;
+            int m = 6;
             int n = 3;
             mergeSortedArray(num1,num2,m,n);
 
@@ -45,5 +45,38 @@ public class Main {
         {
             System.out.print(num1[i]+" ");
         }
+    }
+
+    //O(min(m,n) + mlogm + nlogn)
+     public static void merge(long[] arr1, long[] arr2, int m, int n) 
+    {
+
+        // Declare 2 pointers:
+        int left = m - 1;
+        int right = 0;
+
+        // Swap the elements until arr1[left] is
+        // smaller than arr2[right]:
+        while (left >= 0 && right < n) 
+        {
+            //lower values - arr1
+            //higher values - arr2
+            //segregate like quick sort
+            if (arr1[left] > arr2[right])
+            {
+                long temp = arr1[left];
+                arr1[left] = arr2[right];
+                arr2[right] = temp;
+                left--;
+                right++;
+            } else  //no need to check as left values from in array1 from [0,left] < values in arr2 from [right.n]
+            {
+                break;
+            }
+        }
+
+        // Sort arr1[] and arr2[] individually:
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
     }
 }
