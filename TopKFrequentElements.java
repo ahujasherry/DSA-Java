@@ -27,4 +27,46 @@ class Solution {
         return ans;
 
     }
+
+    //t.c= O(nlogk)
+    public int[] topKFrequentPriorityQueue(int[] nums, int k)
+    {
+       PriorityQueue<Pair> queue = new PriorityQueue<>(new Comparator<Pair>() {
+            @Override
+            public int compare(Pair a, Pair b) {
+                return Integer.compare(a.freq, b.freq);
+            }
+        });
+
+
+        HashMap<Integer,Integer> map  = new HashMap<>();
+        int res[]= new int[k];
+
+        for(int i=0;i<nums.length;i++)
+        {
+            if(!map.containsKey(nums[i])){
+                map.put(nums[i],1);
+            }else{
+                map.put(nums[i], map.get(nums[i])+1);
+            }
+        }
+
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) 
+        {
+            queue.offer(new Pair(entry.getKey(), entry.getValue()));
+            if (queue.size() > k) {
+                queue.poll();
+            }
+        }
+
+        for(int i=0;i<k;i++)
+        {
+            res[i] = queue.poll().val;
+        }
+
+        return res;
+
+
+        
+    }
 }
