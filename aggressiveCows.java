@@ -37,12 +37,10 @@ class Solution {
         {
             cowsCount++; 
             lastPosition =i;
-
-           if (cowsCount == totalCows) {
+        }
+          if (cowsCount == totalCows) {
                 return true; // Successfully placed all cows
             }
-          
-        }
       }
     return false;
     
