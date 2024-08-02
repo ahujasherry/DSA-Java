@@ -21,11 +21,11 @@ class Solution {
             
         }
         
-        for(Map.Entry<String, List<String>> entry: map.entrySet())
-        {
-            ans.add(new ArrayList<>(entry.getValue()));
-        }
-        return ans;
+        // for(Map.Entry<String, List<String>> entry: map.entrySet())
+        // {
+        //     ans.add(new ArrayList<>(entry.getValue()));
+        // }
+        return new ArrayList<>(map.values());
 
     }
 }
