@@ -1,61 +1,44 @@
-import java.util.*;
-
-//https://www.geeksforgeeks.org/the-celebrity-problem/
-public class Main {
-public static int celebrity(ArrayList<ArrayList<Integer>> M, int n) 
-  {
-    //ad[i] -> list of people who knows ith
-    ArrayList<Integer>[] adj = new ArrayList[n];
-
-    //prepare
-    for (int i = 0; i < n; i++) 
-    {
-      adj[i] = new ArrayList<Integer>();
-      for (int j = 0; j < n; j++) 
-      {
-        if (M.get(i).get(j) == 1) {
-        adj[i].add(j);
-        }
-      }
-    }
-
-    //if any adj[i] is empty, check if remaining people knows hiM? if not, ith is the ans
-    for (int i = 0; i < n; i++) 
-    {
-      if (adj[i].isEmpty()) 
-      {
-        boolean flag = true;
-        for (int j = 0; j < n; j++)
-        {
-          if (i == j)
-          continue;
-          if (!adj[j].contains(i)) {
-          flag = false;
-          break;
-          }
-        }
-      if (flag)
-        return i;
-      }
-    }
+public class CelebrityProblem {
     
-    return -1;
-}
-  public static void main(String[] args) 
-  {
-    ArrayList<ArrayList<Integer>> M = new ArrayList<>();
-    M.add(new ArrayList<Integer>(Arrays.asList(0, 0, 1, 0)));
-    M.add(new ArrayList<Integer>(Arrays.asList(0, 0, 1, 0)));
-    M.add(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0)));
-    M.add(new ArrayList<Integer>(Arrays.asList(0, 0, 1, 0)));
+    public static int findCelebrity(boolean[][] knows) {
+        int n = knows.length;
 
-    int n = M.size();
-    int Celebrity = celebrity(M, n);
+        // Array to keep track of in-degrees and out-degrees
+        int[] inDegree = new int[n];
+        int[] outDegree = new int[n];
+        
+        // Count in-degrees and out-degrees
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (knows[i][j]) { // If person i knows person j
+                    outDegree[i]++;
+                    inDegree[j]++;
+                }
+            }
+        }
 
-    if (Celebrity != -1) {
-        System.out.println("Celebrity is : " + Celebrity);
-    } else {
-        System.out.println("No celebrity");
+        // Find the celebrity
+        for (int i = 0; i < n; i++) {
+            if (inDegree[i] == n - 1 && outDegree[i] == 0) {
+                return i; // Person i is the celebrity
+            }
+        }
+
+        return -1; // No celebrity found
     }
-  }
+
+    public static void main(String[] args) {
+        boolean[][] knows = {
+            {false, true, false},
+            {false, false, false},
+            {true, true, false}
+        };
+
+        int celebrity = findCelebrity(knows);
+        if (celebrity != -1) {
+            System.out.println("Celebrity is person: " + celebrity);
+        } else {
+            System.out.println("No celebrity found.");
+        }
+    }
 }
