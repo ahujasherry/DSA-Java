@@ -1,43 +1,51 @@
-//https://leetcode.com/problems/insert-delete-getrandom-o1/?envType=study-plan-v2&envId=top-interview-150
 class RandomizedSet {
 
-    Map<Integer,Integer> map ;
-    List<Integer> list ;
-
-
+   HashMap<Integer, Integer> map;
+    ArrayList<Integer> list;
+    Random random;
+    
     public RandomizedSet() {
-        map = new HashMap<>();
+         map = new HashMap<>();
         list = new ArrayList<>();
+        random = new Random();
     }
-
-    //T.C = O(1)
-    public boolean insert(int val)
+    
+    public boolean insert(int val) 
     {
-        if(map.containsKey(val)) return false;
-
-        map.put(val,list.size());
+        if (map.containsKey(val)) {
+            return false;
+        }
+        
+        map.put(val, list.size());
         list.add(val);
         return true;
-
+        
     }
+    
+    public boolean remove(int val) 
+    {
+         if (!map.containsKey(val)) {
+            return false;
+        }
 
-    //T.C = O(1)
-    public boolean remove(int val) {
-        if(!map.containsKey(val)) return false;
+        int index = map.get(val);
+        int lastElement = list.get(list.size()-1);
 
-        int index = map.get(val);                  //get index from map
-        map.put(list.get(list.size()-1), index);   //replace last element of list to index place in both map and list
-        list.set(index,list.get(list.size()-1));
 
-        map.remove(val);                   // remove from map
-        list.remove(list.size()-1);        //remove from list
+        map.put(lastElement, index);
+        list.set(index, lastElement);
+       
+
+       map.remove(val);
+       list.remove(list.size()-1);
+
         return true;
-
     }
-
-    //T.C = O(1)
-    public int getRandom() {
-       return list.get(new Random().nextInt(list.size()));
+    
+    public int getRandom() 
+    {
+       return list.get(random.nextInt(list.size()));
+        
     }
 }
 
