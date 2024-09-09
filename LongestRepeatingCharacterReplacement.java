@@ -4,34 +4,31 @@ class Solution {
         int maxFreq=0;
         int n = str.length();
         int ans =0;
+        int s = 0;
+        int e=0;
+        int freq[]=new int[26];
 
-
-        //generate all substring
-        for(int i=0;i<n;i++)
+        while(e<n)
         {
-            int freq[]=new int[26];
-        
-            for(int j=i;i<n;j++)
+            //increase freq
+            freq[str.charAt(e)-'A']++;
+
+            //keep track of max freq because subLen - maxFreq replacements can be done
+            maxFreq = Math.max(maxFreq, freq[str.charAt(e)-'A']);
+
+            
+            // keep trimming window if required replacements are > k
+            // no need to update maxFreq when decreased because one char is added and one removed at a time
+            if( (e - s + 1) - maxFreq > k)
             {
-                
-                //increase freq
-                freq[str.charAt(j)-'A']++;
-
-                //keep track of max freq
-                maxFreq = Math.max(maxFreq, freq[str.charAt(j)-'A']);
-
-                int sublen = j-i+1;
-                int replacementsCanbeDone = sublen - maxFreq;
-
-                if(replacementsCanbeDone <= k)
-                {
-                    ans = Math.max(ans,replacementsCanbeDone );
-                }else
-                {
-                    break;
-                }
-
+                freq[str.charAt(s) - 'A']--;
+                s++;
             }
+
+            ans = Math.max(ans,e-s+1);
+            e++;
+
+
         }
         return ans;
     }
