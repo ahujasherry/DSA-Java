@@ -37,6 +37,34 @@ class Result {
         return maxLength;
     }
 
+        //DP
+    static int maxSubsequenceSubstring(char x[], char y[], int n, int m) {
+        // Initialize dp array to size (m+1) x (n+1)
+        int[][] dp = new int[m + 1][n + 1];
+        
+        // Initialize the dp[][] to 0 (optional, as default values are 0)
+        
+        // Calculating value for each element.
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                // If alphabet of string X and Y are equal
+                if (x[j - 1] == y[i - 1]) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+        }
+        
+        // Finding the maximum length
+        int ans = 0;
+        for (int i = 1; i <= m; i++) {
+            ans = Math.max(ans, dp[i][n]);
+        }
+        
+        return ans;
+    }
+
 }
 
 }
