@@ -18,4 +18,30 @@ class Solution {
         
 
     }
+
+    public int reverseMath(int x) 
+    {
+        boolean isNeg = x<0;
+
+        int reverse = 0;
+        int temp=0;
+
+        x = Math.abs(x);
+        while(x!=0)
+        {
+            
+            temp= x%10;
+
+            //if we add temp and * by 10, it should not overflow afterwords
+            if (reverse > (Integer.MAX_VALUE - temp) / 10) {
+                return 0;
+            }
+
+            reverse = reverse*10 + temp;
+            x/=10;
+        } 
+
+        return isNeg ? -reverse : reverse;
+
+    }
 }
