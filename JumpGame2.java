@@ -1,34 +1,34 @@
-//T.C = O(N)
-//S.C = O(1)
 class Solution {
-    public int jump(int[] arr)
+    public int jump(int[] nums) 
     {
+        int n= nums.length;
 
-        int ans =0;
-        int n =arr.length;
-        int start=0;
-        int end =0;
+        int s=0;
+        int e =0;
+        int jumps=0;
+        int max_far = e;
 
-        while(end<n-1)
+        while(e<n)
         {
-            //try every max jump within this range
+            if(max_far < s) break;
+            
+            if(max_far >= n-1) break;
 
-            int farthest_index =0;
-            for(int i = start;i<=end;i++)
+            //check how far we can go
+            for(int i=s;i<=e;i++)
             {
-                farthest_index = Math.max(farthest_index, i + arr[i]);
+                max_far = Math.max(max_far, nums[i]+i );
             }
 
-            //since, we know know maximum jump we can take in that range
-            //update the range
-
-            start = end+1;
-            end = farthest_index;
-            ans++;
-
+            s = e+1;
+            e = max_far;
+            jumps++;
         }
 
-        return ans;
+        if(max_far >= n-1) return jumps;
+        else return -1;
         
     }
+
+    
 }
