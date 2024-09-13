@@ -1,57 +1,39 @@
-//https://leetcode.com/problems/merge-intervals/
-//T.C = O(NlogN) +  O(N)
-//S.C = O(N)
-class ResPair{
-    int start ;
-    int end ;
-
-    public ResPair() {
-    }
-
-    public ResPair(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-}
 
 class Solution {
     public int[][] merge(int[][] intervals) 
     {
-         int n = intervals.length;
-        int k =0;
-        int i =1;
-        int finalRes [][]= new int[n][2];
+        int n = intervals.length;
+        
+        if(n==0 ) return new int[0][0];
 
-        Arrays.sort(intervals, Comparator.comparingInt(l -> l[0]));
+        Arrays.sort(intervals, (a,b)-> Integer.compare(a[0],b[0]));
 
+        List<int[]> ans = new ArrayList<>();
 
-        List<ResPair> resList = new ArrayList<>();
-        resList.add(new ResPair(intervals[0][0],intervals[0][1]));
+        int prevInterval[]= intervals[0];
+        ans.add(prevInterval);
 
-        while(i<n)
+        for(int i=1;i<n;i++)
         {
-             ResPair prev = resList.get(k);
+            int currentInterval[]  = intervals[i]; 
 
-             //if merge
-             if(prev.end >= intervals[i][0])
-             {
-                 //update end in result
-                 prev.end = Math.max(prev.end, intervals[i][1]);
-                 prev.start = Math.min(prev.start, intervals[i][0]);
-                 resList.set(k, prev);
-             }else {
-                 k++;
-                 //add new pair
-                 resList.add(new ResPair(intervals[i][0],intervals[i][1]));
-             }
+            //if merge
+            if(prevInterval[1] >= currentInterval[0] ) 
+            {
+               
+                //update end in ans list as ref 
+                prevInterval[1] = Math.max(currentInterval[1],prevInterval[1]);
+            }else
+            {
 
-             i++;
+                prevInterval = currentInterval;
+                ans.add(prevInterval);
+            }
         }
 
-      finalRes =resList.stream().map(resPair -> new int[]{resPair.start, resPair.end})
-               .toArray(int[][]::new);
+        return ans.toArray(new int[ans.size()][]);
 
-        return finalRes;
+       
         
     }
 }
