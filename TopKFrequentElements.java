@@ -1,31 +1,47 @@
 //https://leetcode.com/problems/top-k-frequent-elements/
 class Solution {
-    public int[] topKFrequent(int[] nums, int k) {
-        List<Integer>[] bucket = new List[nums.length + 1];
-        HashMap<Integer, Integer> hm = new HashMap<>();
+    public int[] topKFrequent(int[] nums, int k) 
+    {
+        
+        List<Integer> bucket[] = new ArrayList[nums.length+1];
+        for (int i = 0; i < bucket.length; i++) {
+            bucket[i] = new ArrayList<>();
+        }
+
+        
+        //build freq map
+        HashMap<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
-            hm.put(num, hm.getOrDefault(num, 0) + 1);
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        for (int key : hm.keySet()) {
-            int freq = hm.get(key);
-            if (bucket[freq] == null) {
-                bucket[freq] = new ArrayList<>();
-            }
-            bucket[freq].add(key);
+        for(Map.Entry<Integer, Integer> entry: map.entrySet())
+        {
+            int freq = entry.getValue();
+            int value = entry.getKey();
+            bucket[freq].add(value);
         }
-        int[] ans = new int[k];
-        int pos = 0;
-        for (int i = bucket.length - 1; i >= 0; i--) {
-            if (bucket[i] != null) {
-                for (int j = 0; j < bucket[i].size() && pos < k; j++) {
-                    ans[pos] = bucket[i].get(j);
-                    pos++;
+
+        int bucketSize = bucket.length;
+        int countAndIndex =0;
+        int result[]=new int[k];
+
+        for(int i= bucketSize -1 ;i>=0;i--)
+        {
+            for(int j=0; j< bucket[i].size();j++)
+            {
+                if(countAndIndex<k)
+                {
+                    result[countAndIndex++]= bucket[i].get(j);
                 }
-            }
-        }
-        return ans;
 
+            }
+
+        }
+
+            return result;
+
+       
     }
 
     //t.c= O(nlogk)
