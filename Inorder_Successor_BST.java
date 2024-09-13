@@ -3,17 +3,16 @@ static node inOrderSuccessor(
     node n)
 {
      
-    
-  
     node succ = null;
- 
-    // Start from root and search for
-    // successor down the tree
+
     while (root != null) 
     {
-        if (n.data < root.data) 
+        //potential successor
+        if (root.data > n.data ) 
         {
             succ = root;
+
+            //try smaller values
             root = root.left;
         }
         else if (n.data > root.data)
