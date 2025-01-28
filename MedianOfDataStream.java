@@ -18,7 +18,9 @@ class MedianFinder {
             }
         
         } else {
+            //if min heap is empty or
             //if num> min heap top put in right
+          
             minHeap.offer(num);
             if (minHeap.size() > maxHeap.size() + 1) {
                 maxHeap.offer(minHeap.poll());
