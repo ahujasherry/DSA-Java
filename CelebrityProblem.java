@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/find-the-celebrity/description/
 public class CelebrityProblem {
     
     public static int findCelebrity(boolean[][] knows) {
