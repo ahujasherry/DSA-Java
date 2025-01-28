@@ -1,4 +1,6 @@
 // problem link : https://leetcode.com/problems/kth-largest-element-in-an-array/
+//put k elements in min heap
+//put remaining n-k elements in heap. At end, kth largest will be at top
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
